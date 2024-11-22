@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+    </style>
+</head>
+
+<body>
+    <header class="bg-dark text-white text-center py-3">
+        <h1>Delicious Food Delivery</h1>
+        <p>Freshly prepared meals delivered to your doorstep</p>
+    </header>
+
+    <div class="container mt-5">
+        <h2>Food Categories</h2>
+        <div class="mb-4">
+            <button class="btn btn-outline-primary category-btn">All</button>
+            <button class="btn btn-outline-success category-btn">Pizza</button>
+            <button class="btn btn-outline-danger category-btn">Burgers</button>
+            <button class="btn btn-outline-warning category-btn">Salads</button>
+            <button class="btn btn-outline-info category-btn">Desserts</button>
+        </div>
+
+        <h2>Recommended Foods</h2>
+        <div class="row">
+            <div class="col-md-6 col-lg-3 mb-5">
+                <div class="card food-item">
+                    <img src="https://picsum.photos/seed/3X9OEmJCAKfwHYjXOtEya/512" class="card-img-top" alt="Pizza">
+                    <div class="card-body">
+                        <h5 class="card-title">Pepperoni Pizza</h5>
+                        <p class="card-text">$12.99</p>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#foodModal" data-bs-name="Pepperoni Pizza" data-bs-price="12.99" data-bs-image="https://via.placeholder.com/300">View</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-5">
+                <div class="card food-item">
+                    <img src="https://picsum.photos/seed/xE2Ec_95Xu-rzQNP2wT3e/512" class="card-img-top" alt="Burger">
+                    <div class="card-body">
+                        <h5 class="card-title">Classic Cheeseburger</h5>
+                        <p class="card-text">$9.99</p>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#foodModal" data-bs-name="Classic Cheeseburger" data-bs-price="9.99" data-bs-image="https://via.placeholder.com/300">View</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-5">
+                <div class="card food-item">
+                    <img src="https://picsum.photos/seed/7ow7mKdytV96SZhgovNep/512" class="card-img-top" alt="Salad">
+                    <div class="card-body">
+                        <h5 class="card-title">Caesar Salad</h5>
+                        <p class="card-text">$7.99</p>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#foodModal" data-bs-name="Caesar Salad" data-bs-price="7.99" data-bs-image="https://via.placeholder.com/300">View</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-5">
+                <div class="card food-item">
+                    <img src="https://picsum.photos/seed/7ow7mKdytV96SZhgovNep/512" class="card-img-top" alt="Salad">
+                    <div class="card-body">
+                        <h5 class="card-title">Caesar Salad</h5>
+                        <p class="card-text">$7.99</p>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#foodModal" data-bs-name="Caesar Salad" data-bs-price="7.99" data-bs-image="https://via.placeholder.com/300">View</button>
+                    </div>
+                </div>
+            </div>
+          
+        <h2>Recommended Foods</h2>
+        <div class="row">
+            <div class="col-md-6 col-lg-3 mb-5">
+                <div class="card food-item">
+                    <img src="https://picsum.photos/seed/3X9OEmJCAKfwHYjXOtEya/512" class="card-img-top" alt="Pizza">
+                    <div class="card-body">
+                        <h5 class="card-title">Pepperoni Pizza</h5>
+                        <p class="card-text">$12.99</p>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#foodModal" data-bs-name="Pepperoni Pizza" data-bs-price="12.99" data-bs-image="https://via.placeholder.com/300">View</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-5">
+                <div class="card food-item">
+                    <img src="https://picsum.photos/seed/xE2Ec_95Xu-rzQNP2wT3e/512" class="card-img-top" alt="Burger">
+                    <div class="card-body">
+                        <h5 class="card-title">Classic Cheeseburger</h5>
+                        <p class="card-text">$9.99</p>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#foodModal" data-bs-name="Classic Cheeseburger" data-bs-price="9.99" data-bs-image="https://via.placeholder.com/300">View</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-5">
+                <div class="card food-item">
+                    <img src="https://picsum.photos/seed/7ow7mKdytV96SZhgovNep/512" class="card-img-top" alt="Salad">
+                    <div class="card-body">
+                        <h5 class="card-title">Caesar Salad</h5>
+                        <p class="card-text">$7.99</p>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#foodModal" data-bs-name="Caesar Salad" data-bs-price="7.99" data-bs-image="https://via.placeholder.com/300">View</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-5">
+                <div class="card food-item">
+                    <img src="https://picsum.photos/seed/7ow7mKdytV96SZhgovNep/512" class="card-img-top" alt="Salad">
+                    <div class="card-body">
+                        <h5 class="card-title">Caesar Salad</h5>
+                        <p class="card-text">$7.99</p>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#foodModal" data-bs-name="Caesar Salad" data-bs-price="7.99" data-bs-image="https://via.placeholder.com/300">View</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="foodModal" aria-labelledby="foodModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="foodModalLabel">Food Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex flex-column flex-md-row">
+                    <!-- ฝั่งซ้าย: รูปภาพ -->
+                    <div class="col-12 col-md-6 d-flex justify-content-center align-items-center mb-4">
+                        <img class="mb-3" src="https://picsum.photos/seed/7ow7mKdytV96SZhgovNep/512" style="max-width: 70%; height: auto; border-radius: 8px;">
+                    </div>
+                    <!-- ฝั่งขวา: ชื่อ, ราคา, และปริมาณ -->
+                    <div class="col-12 col-md-6 justify-content-center align-items-start">
+                        <h5 id="modal-name" class="mb-3">Food Name</h5>
+                        <p id="modal-price" class="mb-4 ">$9.99</p>
+                        <div class="mb-4 w-100">
+                            <label class="form-label">จำนวน :</label>
+                            <input type="number" class="form-control" value="1" min="1">
+                        </div>
+                        <div class="justify-content-center">
+                            <button type="button" class="btn btn-primary" > Add to Cart</button>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+<!-- Modal -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
