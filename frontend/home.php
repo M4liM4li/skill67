@@ -176,8 +176,6 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
           <hr>
         </div>
       </div>
-
-
       <div class="col-lg-10 col-sm-12">
         <div class="row nopadding">
           <?php if (isset($_GET['type'])) { ?>

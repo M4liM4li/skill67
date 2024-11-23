@@ -24,8 +24,10 @@ if(isset($_POST['add'])){
             $sql = $conn->query("INSERT INTO tb_user(fname,lname,Email,password,role) VALUE('$fname','$lname','$email','$pass','member')");
             $rs = $sql->fetch();
             header("location: ../../frontend/admin.php?page=user");
+            alert("../../frontend/admin.php?page=user","เพื่มผู้ใช้เสร็จสิ้น","success");
+
         }else{
-            alert("xxxxxxxx", "../../frontend/admin.php?page=user");
+            alert("../../frontend/admin.php?page=user","รหัสไม่ตรงกัน","danger");
         } 
 }
 
@@ -34,6 +36,8 @@ if(isset($_POST['del'])){
     $sql = "DELETE FROM tb_user WHERE uid = '$id'";
     $query = $conn->query($sql);
     header("location: ../../frontend/admin.php?page=user");
+    alert("../../frontend/admin.php?page=user","ลบข้อมูลเสร็จสิ้น","danger");
+
 }
 
 if(isset($_POST['edit'])){
@@ -51,13 +55,17 @@ if(isset($_POST['edit'])){
         $sql = $conn->query("UPDATE tb_user SET fname = '$fname', lname = '$lname', email = '$email' WHERE uid = '$id'");
         $rs = $sql->fetch();
         header("location: ../../frontend/admin.php?page=user");
+        alert("../../frontend/admin.php?page=user","เปลี่ยนข้อมูลส่วนตัวเสร็จสิ้น","success");
+
     }else{
         $sql = $conn->query("UPDATE tb_user SET fname = '$fname', lname = '$lname', email = '$email' WHERE uid = '$id'");
         $rs = $sql->fetch();
         header("location: ../../frontend/admin.php?page=user");
+        alert("../../frontend/admin.php?page=user","เปลี่ยนข้อมูลส่วนตัวเสร็จสิ้น","success");
+
     }
 }
-if(isset($_POST['edit2'])){
+if(isset($_POST['useredit'])){
     $id = $_POST['id'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -71,11 +79,28 @@ if(isset($_POST['edit2'])){
         $sql = $conn->query("UPDATE tb_user SET fname = '$fname', lname = '$lname', email = '$email', userimg = '$new_images' WHERE uid = '$id'");
         $rs = $sql->fetch();
         header("location: ../../frontend/profile.php");
+        alert("../../frontend/profile.php","เปลี่ยนข้อมูลส่วนตัวเสร็จสิ้น","success");
     }else{
         $sql = $conn->query("UPDATE tb_user SET fname = '$fname', lname = '$lname', email = '$email' WHERE uid = '$id'");
         $rs = $sql->fetch();
         header("location: ../../frontend/profile.php");
+        alert("../../frontend/profile.php","เปลี่ยนข้อมูลส่วนตัวเสร็จสิ้น","success");
+
     }
 }
 
+if(isset($_POST['passedit'])){
+    $id = $_POST['id'];
+    $oldpass = $_POST['oldpass'];
+    $newpass = $_POST['newpass'];
+
+    if(getUid($_SESSION['id'])['password'] == $oldpass){
+        $sql = $conn->query("UPDATE tb_user SET password = '$newpass' where uid ='$id'");
+        $rs = $sql->fetch();
+        header("location: ../../frontend/profile.php");
+        alert("../../frontend/profile.php","เปลี่ยนรหัสเสร็จสิ้น","success");
+    }else{
+        alert("../../frontend/profile.php","รหัสไม่ถูกต้อง","danger");
+    }
+}
 ?>

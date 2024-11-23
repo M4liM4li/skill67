@@ -257,12 +257,12 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
                     <ul class="nav nav-pills flex-column mb-auto">
                         <a href="home.php" class="nav-link link-dark hold">ทั้งหมด</a>
                         <?php
-                        $getType = $stmt = $conn->query("SELECT * FROM tb_type");
+                        $getType = $stmt = $conn->query("SELECT * FROM food_cate");
                         while ($rw = $getType->fetch()) {
                         ?>
                             <li>
-                                <a href="store.php?sid=<?php echo $sid ?>?type=<?php echo $rw['type_id'] ?>" class="nav-link link-dark hold">
-                                    <?php echo $rw['type_name'] ?>
+                                <a href="store.php?sid=<?php echo $sid ?>?type=<?php echo $rw['cate_id'] ?>" class="nav-link link-dark hold">
+                                    <?php echo $rw['cate_name'] ?>
                                 </a>
                             </li>
                         <?php } ?>
@@ -270,8 +270,6 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
                     <hr>
                 </div>
             </div>
-
-
             <!-- food -->
             <div class="col-lg-10 col-sm-12">
                 <div class="row nopadding">

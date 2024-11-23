@@ -99,7 +99,7 @@ if (isset($_POST['logout'])) {
             <!-- Content Area -->
             <main class="col-md-10 col-lg-10 ms-sm-auto px-md-4">
                 <?php if (isset($_SESSION['text'])): ?>
-                    <div class="alert alert-<?php echo $_SESSION['alert_color']; ?>"><?php echo $_SESSION['text']; unset($_SESSION['text']);unset($_SESSION['alert_color']);?></div>
+                    <div class="alert mt-2 alert-<?php echo $_SESSION['alert_color']; ?>"><?php echo $_SESSION['text']; unset($_SESSION['text']);unset($_SESSION['alert_color']);?></div>
                 <?php endif; ?>
                 <?php if ($_GET['page'] == 'user') { ?>
                 <div class="d-flex justify-content-between align-items-center mt-3">
@@ -122,7 +122,7 @@ if (isset($_POST['logout'])) {
                     </thead>
                     <tbody>
                         <?php 
-                            $sql = $conn->query("SELECT * FROM tb_user");
+                            $sql = $conn->query("SELECT * FROM tb_user WHERE role != 'admin'");
                             while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
                         ?>
                         <tr>

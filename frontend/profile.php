@@ -74,9 +74,9 @@ if (isset($_POST['logout'])) {
   </nav>
   <!-- Navbar -->
 <div class="container mt-5">
-    <h2 class="text-center mb-4">User Profile</h2>
+    <h2 class="text-center mb-4">ข้อมูลส่วนตัว</h2>
     <div class="row">
-        <div class="col-md-4 mb-4">
+        <div class="col-md-4 mb-4"> 
             <div class="card">
                 <div class="card-body text-center">
                   <?php
@@ -93,10 +93,10 @@ if (isset($_POST['logout'])) {
         </div>
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-cog"></i> Profile Settings
-                </div>
                 <div class="card-body">
+                <?php if (isset($_SESSION['text'])): ?>
+                    <div class="alert alert-<?php echo $_SESSION['alert_color']; ?>"><?php echo $_SESSION['text']; unset($_SESSION['text']);unset($_SESSION['alert_color']);?></div>
+                <?php endif; ?>
                     <form action="../backend/admin/user.php" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label class="form-label">ชื่อ</label>
@@ -115,8 +115,24 @@ if (isset($_POST['logout'])) {
                             <input type="file" id="currentFile" class="form-control mb-2" name="userimg">
                         </div>
                         <input type="text" class="form-control" name="id" value="<?php echo $_SESSION['id'];?> " hidden>
-                        <button type="submit" class="btn btn-success" name="edit2" >Save Changes</button>
+                        <button type="submit" class="btn btn-success" name="useredit" >บันทึก</button>
                     </form>
+                </div>
+                <h2 class="text-center mb-4">เปลี่ยนรหัสผ่าน</h2>
+                <div class="card-body">
+                    <form action="../backend/admin/user.php" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label class="form-label">รหัสผ่านเดิม</label>
+                            <input type="text" class="form-control" name="oldpass">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">รหัสผ่านใหม่</label>
+                            <input type="text" class="form-control mb-2 " name="newpass">
+                        </div>
+                        <input type="text" class="form-control" name="id" value="<?php echo $_SESSION['id'];?> " hidden>
+                        <button type="submit" class="btn btn-success" name="passedit"  onclick="confirmChange()">เปลี่ยนรหัสผ่าน</button>
+                    </form>
+                    
                 </div>
             </div>
         </div>
