@@ -108,8 +108,9 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
           <a class="link-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><img class="profile-img" src="../img/<?php echo getUid($_SESSION['id'])['userimg'] ?>"></a>
           <ul class="dropdown-menu dropdown-menu-end">
             <li><a class="dropdown-item" href="profile.php">จัดการข้อมูลส่วนตัว</a></li>
-            <li><a class="dropdown-item" href="openres.php">ลงทะเบียนร้านค้า</a></li>
-            <li><a class="dropdown-item" href="regrider.php">ลงทะเบียนไรเดอร์</a></li>
+            <li><a class="dropdown-item" href="res.php">ลงทะเบียนร้านค้า</a></li>
+            <li><a class="dropdown-item" href="#">ลงทะเบียนไรเดอร์</a></li>
+            <li><a class="dropdown-item" href="status.php">สถานะการสั่งซื้อ</a></li>
             <?php if (getUid($_SESSION['id'])['role'] == "admin") { ?>
               <hr>
               <li><a href="admin.php?page=user" class="dropdown-item">เมนูแอดมิน</a></li>
@@ -141,10 +142,6 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
       <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
         <h1 class="display-5 lh-1">KTP Delivery</h1>
         <p class="display-4 fw-bold lh-1 pt-1 text-success">อยากกิน ต้องได้กิน</p>
-        <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3 pt-5">
-          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary</button>
-          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
-        </div> -->
       </div>
       <div class="col-lg-5 offset-lg-1 p-0 overflow-hidden shadow-lg" style="margin-left: 0px;">
         <img class=" rounded-lg-3" src="../img/ed4e96ec-3cb1-47cf-9eac-f5363b060a0e.jpg" alt="" width="920">
@@ -176,6 +173,8 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
           <hr>
         </div>
       </div>
+
+
       <div class="col-lg-10 col-sm-12">
         <div class="row nopadding">
           <?php if (isset($_GET['type'])) { ?>

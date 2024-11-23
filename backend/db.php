@@ -2,24 +2,31 @@
 $user = "root";
 $pword = "";
 session_start();
-try{
-    $conn = new PDO("mysql:host=localhost;dbname=skill67",$user,$pword);
+try {
+    $conn = new PDO("mysql:host=localhost;dbname=skill67", $user, $pword);
     $conn->exec("SET NAMES 'utf8'");
-}catch (PDOException $d){
+} catch (PDOException $d) {
     echo $d->getMessage();
 }
 
-function getUid($uid){
+function getUid($uid)
+{
     global $conn;
     $sql = $conn->query("SELECT * FROM tb_user WHERE uid = '$uid'");
     $rs = $sql->fetch();
     return $rs;
 };
-function alert($location,$text,$color){
+function alert($location, $text, $color)
+{
     $_SESSION['text'] = $text;
     $_SESSION['alert_color'] = $color;
     header("location: $location");
     exit();
+};
+function headWt($d, $t)
+{
+    $_SESSION['text'] = $t;
+    header("location: $d");
 };
 function getRate($sid)
 {
@@ -28,4 +35,3 @@ function getRate($sid)
     $rw = $rs->fetch();
     return $rw;
 }
-?>

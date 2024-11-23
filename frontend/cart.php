@@ -18,7 +18,7 @@ if (count($product) > 0) {
     $ids = implode(", ", $product);
 };
 
-$stmt = $conn->query("SELECT * FROM tb_food WHERE food_id = '$ids'");
+$stmt = $conn->query("SELECT * FROM tb_food WHERE food_id IN ($ids)");
 if (isset($_POST['logout'])) {
     session_destroy();
     unset($_SESSION['id']);
@@ -160,8 +160,8 @@ if (isset($_POST['logout'])) {
                     <a class="link-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><img class="profile-img" src="../img/<?php echo getUid($_SESSION['id'])['userimg'] ?>"></a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="profile.php">จัดการข้อมูลส่วนตัว</a></li>
-                        <li><a class="dropdown-item" href="openres.php">ลงทะเบียนร้านค้า</a></li>
-                        <li><a class="dropdown-item" href="regrider.php">ลงทะเบียนไรเดอร์</a></li>
+                        <li><a class="dropdown-item" href="res.php">ลงทะเบียนร้านค้า</a></li>
+                        <li><a class="dropdown-item" href="#">ลงทะเบียนไรเดอร์</a></li>
                         <?php if (getUid($_SESSION['id'])['role'] == "admin") { ?>
                             <hr>
                             <li><a href="admin.php?page=user" class="dropdown-item">เมนูแอดมิน</a></li>
@@ -190,36 +190,37 @@ if (isset($_POST['logout'])) {
 
     <div class="container-fluid mt-5 mx-5">
         <h2 style="color: darkslategray;" class="mb-4 ms-3 fw-bold">ตะกร้า</h2>
-        <?php if (isset($_SESSION['text'])): ?>
-            <div class="alert alert-<?php echo $_SESSION['alert_color']; ?>"><?php echo $_SESSION['text']; unset($_SESSION['text']);unset($_SESSION['alert_color']);?></div>
-        <?php endif; ?>
+        <?php if (isset($_SESSION['text'])) { ?>
+            <div class="alert alert-success"><?php echo $_SESSION['text'];
+                                                unset($_SESSION['text']) ?></div>
+        <?php } ?>
         <div class="row cart-body">
             <?php
-            while ($r = $stmt->fetch()) {
+            while ($rw = $stmt->fetch()) {
             ?>
                 <div class="col-md-6 me-2 col-sm-12 cart mb-3">
-                    <img src="<?php echo $r['food_img']  ?>" class="cart-img" alt="">
+                    <img src="../img/<?php echo $rw['food_img']  ?>" class="cart-img" alt="">
                     <div class="cart-content">
                         <div class="cart-menu d-flex">
-                            <span class="me-2 fw-bold">เมนู &nbsp; :</span><span class="cart-menu-list"><?php echo $r['food_name']  ?></span>
+                            <span class="me-2 fw-bold">เมนู &nbsp; :</span><span class="cart-menu-list"><?php echo $rw['food_name']  ?></span>
                         </div>
                         <div class="cart-price d-flex">
-                            <span class="me-2 fw-bold">ราคา &nbsp; :</span><span><?php echo $r['food_price'] * (100 - $r['food_discount']) / 100 . " ฿" ?></span>
+                            <span class="me-2 fw-bold">ราคา &nbsp; :</span><span><?php echo $rw['food_price'] * (100 - $rw['food_discount']) / 100 . " ฿" ?></span>
                         </div>
                         <div class="cart-quatity d-flex">
-                            <span class="me-2 fw-bold">จำนวน &nbsp; :</span><span><?php echo $_SESSION['cart'][$r['food_id']] ?></span>
+                            <span class="me-2 fw-bold">จำนวน &nbsp; :</span><span><?php echo $_SESSION['cart'][$rw['food_id']] ?></span>
                         </div>
                         <div class="action d-flex justify-content-end">
                             <form action="../backend/cart.php" method="POST">
-                                <input type="text" value="<?php echo $r['food_id'] ?>" name="id" hidden>
+                                <input type="text" value="<?php echo $rw['food_id'] ?>" name="id" hidden>
                                 <input type="submit" class="cart-action" name="del" value="ลบ">
                             </form>
                         </div>
                     </div>
                 </div>
             <?php
-                @$total += @$r['food_price'] * $_SESSION['cart'][$r['food_id']];
-                $sid = $r['res_id'];
+                @$total += @$rw['food_price'] * $_SESSION['cart'][$rw['food_id']] * (100 - $rw['food_discount']) / 100;
+                $sid = $rw['res_id'];
             } ?>
         </div>
     </div>
@@ -234,7 +235,7 @@ if (isset($_POST['logout'])) {
         </div>
     </footer>
 
-    <form action="../back/cart.php" method="POST">
+    <form action="../backend/cart.php" method="POST">
         <div class="modal fade" id="buy">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -250,12 +251,12 @@ if (isset($_POST['logout'])) {
                         <input type="text" name="sid" value="<?php echo $sid; ?>" id="" hidden>
                         <input type="text" name="id" value="<?php echo $_SESSION['id'] ?>" hidden>
                         <?php
-                        $getItem = $db->query("SELECT * FROM item WHERE item_id IN ($ids)");
+                        $getItem = $conn->query("SELECT * FROM tb_food WHERE food_id IN ($ids)");
                         while ($gT = $getItem->fetch(PDO::FETCH_ASSOC)) {
                         ?>
-                            <input type="text" name="product[<?php echo $gT['item_id'] ?>][name]" value="<?php echo $gT['item_name'] ?>" hidden>
-                            <input type="text" name="product[<?php echo $gT['item_id'] ?>][price]" value="<?php echo $gT['item_price'] * (100 - $gT['item_discount']) / 100 ?>" hidden>
-                            <input type="text" name="product[<?php echo $gT['item_id'] ?>][id]" value="<?php echo $gT['item_id'] ?>" hidden>
+                            <input type="text" name="product[<?php echo $gT['food_id'] ?>][name]" value="<?php echo $gT['food_name'] ?>" hidden>
+                            <input type="text" name="product[<?php echo $gT['food_id'] ?>][price]" value="<?php echo $gT['food_price'] * (100 - $gT['food_discount']) / 100 ?>" hidden>
+                            <input type="text" name="product[<?php echo $gT['food_id'] ?>][id]" value="<?php echo $gT['food_id'] ?>" hidden>
                         <?php } ?>
                     </div>
                     <div class="modal-footer">

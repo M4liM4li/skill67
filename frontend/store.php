@@ -200,8 +200,8 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
                     <a class="link-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><img class="profile-img" src="../img/<?php echo getUid($_SESSION['id'])['userimg'] ?>"></a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item" href="profile.php">จัดการข้อมูลส่วนตัว</a></li>
-                        <li><a class="dropdown-item" href="openres.php">ลงทะเบียนร้านค้า</a></li>
-                        <li><a class="dropdown-item" href="regrider.php">ลงทะเบียนไรเดอร์</a></li>
+                        <li><a class="dropdown-item" href="res.php">ลงทะเบียนร้านค้า</a></li>
+                        <li><a class="dropdown-item" href="#">ลงทะเบียนไรเดอร์</a></li>
                         <?php if (getUid($_SESSION['id'])['role'] == "admin") { ?>
                             <hr>
                             <li><a href="admin.php?page=user" class="dropdown-item">เมนูแอดมิน</a></li>
@@ -257,12 +257,12 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
                     <ul class="nav nav-pills flex-column mb-auto">
                         <a href="home.php" class="nav-link link-dark hold">ทั้งหมด</a>
                         <?php
-                        $getType = $stmt = $conn->query("SELECT * FROM food_cate");
+                        $getType = $stmt = $conn->query("SELECT * FROM tb_type");
                         while ($rw = $getType->fetch()) {
                         ?>
                             <li>
-                                <a href="store.php?sid=<?php echo $sid ?>?type=<?php echo $rw['cate_id'] ?>" class="nav-link link-dark hold">
-                                    <?php echo $rw['cate_name'] ?>
+                                <a href="store.php?sid=<?php echo $sid ?>?type=<?php echo $rw['type_id'] ?>" class="nav-link link-dark hold">
+                                    <?php echo $rw['type_name'] ?>
                                 </a>
                             </li>
                         <?php } ?>
@@ -270,6 +270,8 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
                     <hr>
                 </div>
             </div>
+
+
             <!-- food -->
             <div class="col-lg-10 col-sm-12">
                 <div class="row nopadding">
@@ -281,7 +283,7 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
                         while ($rw = $getFood->fetch(PDO::FETCH_ASSOC)) {
                         ?>
                             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 index-store">
-                                <a href="#Modalproduct" data-bs-toggle="modal" data-target="#Modalproduct" class="text-decoration-none" onclick="viewItem('<?php echo $r['food_name'] ?>','<?php echo $r['food_price'] ?>','<?php echo $r['food_discount'] ?>','<?php echo $r['food_img'] ?>','<?php echo $r['food_id'] ?>')">
+                                <a href="#Modalproduct" data-bs-toggle="modal" data-target="#Modalproduct" class="text-decoration-none" onclick="viewItem('<?php echo $rw['food_name'] ?>','<?php echo $rw['food_price'] ?>','<?php echo $rw['food_discount'] ?>','../img/<?php echo $rw['food_img'] ?>','<?php echo $rw['food_id'] ?>')">
                                     <img src="../img/<?php echo $rw['res_img'] ?>" class="index-store-img">
                                     <div class="index-store-content">
                                         <!-- rate -->
@@ -299,7 +301,7 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
                         while ($rw = $getFood->fetch(PDO::FETCH_ASSOC)) {
                         ?>
                             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 index-store">
-                                <a href="#Modalproduct" data-bs-toggle="modal" data-target="#Modalproduct" class="text-decoration-none" onclick="viewItem('<?php echo $rw['food_name'] ?>','<?php echo $rw['food_price'] ?>','<?php echo $rw['food_discount'] ?>','<?php echo $rw['food_img'] ?>','<?php echo $rw['food_id'] ?>')">
+                                <a href="#Modalproduct" data-bs-toggle="modal" data-target="#Modalproduct" class="text-decoration-none" onclick="viewItem('<?php echo $rw['food_name'] ?>','<?php echo $rw['food_price'] ?>','<?php echo $rw['food_discount'] ?>','../img/<?php echo $rw['food_img'] ?>','<?php echo $rw['food_id'] ?>')">
                                     <img src="../img/<?php echo $rw['food_img'] ?>" class="index-store-img">
                                     <div class="index-store-content">
                                         <h5 class="fw-bold"><?php echo $rw['food_name'] ?></h5>
@@ -349,7 +351,7 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
                     </div>
                 </div>
             </form>
-            <script src="../css/bootstrap.bundle.min.js"></script>
+            <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
             <script src="main.js"></script>
 
             <!-- cart -->
@@ -363,6 +365,22 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
 
     <!-- test -->
     </div>
+
+    <script>
+        let qty = document.getElementById("qty");
+
+        function increment() {
+            qty.value = parseInt(qty.value) + 1
+        }
+
+        function decrement() {
+            if (qty.value <= 1) {
+                qty.value = 1
+            } else {
+                qty.value = parseInt(qty.value) - 1
+            }
+        }
+    </script>
 </body>
 
 </html>
