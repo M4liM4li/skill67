@@ -99,11 +99,6 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
       </a>
       <!-- Navbar links -->
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <form action="home.php" class="me-4">
-            <input type="search" name="search" class="form-control me-2 " placeholder="Seacrh" required>
-          </form>
-        </ul>
         <div class="dropdown">
           <a class="link-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><img class="profile-img" src="../img/<?php echo getUid($_SESSION['id'])['userimg'] ?>"></a>
           <ul class="dropdown-menu dropdown-menu-end">
@@ -158,6 +153,9 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
           <span class="fs-4">Shop Categories</span>
           <hr>
           <ul class="nav nav-pills flex-column mb-auto">
+            <form action="home.php" class="me-4">
+              <input type="search" name="search" class="form-control me-2 " placeholder="Seacrh" required>
+            </form>
             <a href="home.php" class="nav-link link-dark hold">ทั้งหมด</a>
             <?php
             $getType = $stmt = $conn->query("SELECT * FROM tb_type");
@@ -187,7 +185,7 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
                 <a href="store.php?sid=<?php echo $rw['res_id'] ?>" class="text-decoration-none">
                   <img src="../img/<?php echo $rw['res_img'] ?>" class="index-store-img">
                   <div class="index-store-content">
-                    <!-- rate -->
+                    <p class="index-store-review"><?php echo getRate($rw['res_id'])['rate'] ?></p>
                     <h5 class="fw-bold"><?php echo $rw['res_name'] ?></h5>
                     <p><?php echo $rw['res_detail'] ?></p>
                   </div>

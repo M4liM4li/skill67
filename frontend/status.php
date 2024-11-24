@@ -71,7 +71,7 @@ if (isset($_POST['logout'])) {
         </div>
     </nav>
     <!-- Navbar -->
-    <div class="container">
+    <div class="container mt-4">
         <div class="row">
             <div class="col-lg-2 col-sm-12 mb-4">
                 <div class="list-group list-group-flush">
@@ -87,7 +87,7 @@ if (isset($_POST['logout'])) {
                     while ($r = $s->fetch()) {
                         $oid = $r['order_id'];
                     ?>
-                        <div class="status-content mt-4">
+                        <div class="border p-3 mt-4 rounded-2">
                             <div class="status-menu d-flex">
                                 <p class="fw-bold me-2">เมนู &nbsp; :</p>
                                 <P class="status-menu-list"><?php
@@ -102,7 +102,7 @@ if (isset($_POST['logout'])) {
                                 <p><?php echo $r['order_total'] . " ฿" ?></p>
                             </div>
                             <div class="d-flex">
-                                <p class="me-3 text-success">จัดส่งสำเร็จ </p> <?php if ($r['review'] == '0') { ?>
+                                <a class="me-3 btn btn-success">จัดส่งสำเร็จ </a> <?php if ($r['review'] == '0') { ?>
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#review" onclick="reviewItem('<?php echo $r['order_id'] ?>','<?php echo $r['res_id'] ?>')" class="job-accpact">
                                         รีวิว
                                     </button>
@@ -118,7 +118,7 @@ if (isset($_POST['logout'])) {
                     while ($r = $s->fetch()) {
                         $oid = $r['order_id'];
                     ?>
-                        <div class="status-content mt-4">
+                        <div class="border p-3 mt-4 rounded-2">
                             <div class="status-menu d-flex">
                                 <p class="fw-bold me-2">เมนู &nbsp; :</p>
                                 <P class="status-menu-list"><?php
@@ -128,16 +128,16 @@ if (isset($_POST['logout'])) {
                                                             }
                                                             ?></P>
                             </div>
-                            <div class="status-price d-flex">
+                            <div class="d-flex">
                                 <p class="fw-bold me-2">ราคาทั้งหมด &nbsp; :</p>
                                 <p><?php echo $r['order_total'] . " ฿" ?></p>
                             </div>
                             <?php if ($r['order_status'] == '0') { ?>
-                                <p>รอร้านอาหารรับออเดอร์</p>
+                                <p class="btn btn-warning">รอร้านอาหารรับออเดอร์</p>
                             <?php } else if ($r['order_status'] == '1') { ?>
-                                <p>รอไรเดอร์ไปรับอาหาร</p>
+                                <p class="btn btn-warning">รอไรเดอร์ไปรับอาหาร</p>
                             <?php } else if ($r['order_status'] == '2') { ?>
-                                <p>รอก่อน ไรเดอร์กำลังไปหาคุณ</p>
+                                <p class="btn btn-warning">รอก่อน ไรเดอร์กำลังไปหาคุณ</p>
                             <?php } ?>
                         </div>
                     <?php } ?>

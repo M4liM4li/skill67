@@ -202,6 +202,7 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
                         <li><a class="dropdown-item" href="profile.php">จัดการข้อมูลส่วนตัว</a></li>
                         <li><a class="dropdown-item" href="res.php">ลงทะเบียนร้านค้า</a></li>
                         <li><a class="dropdown-item" href="#">ลงทะเบียนไรเดอร์</a></li>
+                        <li><a class="dropdown-item" href="status.php">สถานะการสั่งซื้อ</a></li>
                         <?php if (getUid($_SESSION['id'])['role'] == "admin") { ?>
                             <hr>
                             <li><a href="admin.php?page=user" class="dropdown-item">เมนูแอดมิน</a></li>
@@ -255,7 +256,7 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
                     <span class="fs-4">Food Categories</span>
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
-                        <a href="home.php" class="nav-link link-dark hold">ทั้งหมด</a>
+                        <a href="store.php?sid=<?php echo $sid ?>" class="nav-link link-dark hold">ทั้งหมด</a>
                         <?php
                         $getType = $stmt = $conn->query("SELECT * FROM tb_type");
                         while ($rw = $getType->fetch()) {
@@ -279,16 +280,21 @@ if (getUid($_SESSION['id'])['role'] == 'ban') {
                         <?php
                         $sid = $_GET['sid'];
                         $type = $_GET['type'];
-                        $getFood = $conn->query("SELECT * FROM tb_res WHERE res_status = '1' AND res_type = '$type'");
+                        $getFood = $conn->query("SELECT * FROM tb_food WHERE res_id = '$sid' AND food_type = '$type'");
                         while ($rw = $getFood->fetch(PDO::FETCH_ASSOC)) {
                         ?>
                             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 index-store">
                                 <a href="#Modalproduct" data-bs-toggle="modal" data-target="#Modalproduct" class="text-decoration-none" onclick="viewItem('<?php echo $rw['food_name'] ?>','<?php echo $rw['food_price'] ?>','<?php echo $rw['food_discount'] ?>','../img/<?php echo $rw['food_img'] ?>','<?php echo $rw['food_id'] ?>')">
-                                    <img src="../img/<?php echo $rw['res_img'] ?>" class="index-store-img">
+                                    <img src="../img/<?php echo $rw['food_img'] ?>" class="index-store-img">
                                     <div class="index-store-content">
-                                        <!-- rate -->
-                                        <h5 class="fw-bold"><?php echo $rw['res_name'] ?></h5>
-                                        <p><?php echo $rw['res_detail'] ?></p>
+                                        <h5 class="fw-bold"><?php echo $rw['food_name'] ?></h5>
+                                        <p><?php if (!empty($rw['food_discount'])) { ?>
+                                                <h7 class="text-danger"><s><?php echo $rw['food_price'] . " ฿" ?></s></h7>
+                                                <h7 class="text-success"><?php echo $rw['food_price'] * (100 - $rw['food_discount']) / 100 . " ฿"; ?></h7>
+                                            <?php } else {
+                                                echo $rw['food_price'] . " ฿";
+                                            } ?>
+                                        </p>
                                     </div>
                                 </a>
                             </div>
