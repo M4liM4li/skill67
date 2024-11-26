@@ -73,6 +73,7 @@ if (isset($_POST['logout'])) {
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     </div>
 </nav>
 <!--offcanvas-->
@@ -107,6 +108,10 @@ if (isset($_POST['logout'])) {
 </div>
 <!--offcanvas-->
 
+=======
+    </nav>
+    <!-- Navbar -->
+>>>>>>> 9b573a476830d08007f65ecc6cbfe4d6de51e00b
     <div class="container mt-4">
         <div class="row">
             <div class="col-lg-2 col-sm-12 mb-4">
