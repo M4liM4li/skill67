@@ -1,0 +1,149 @@
+.profile-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.hold:hover {
+    color: green;
+}
+
+.nopadding {
+    padding: 0 !important;
+}
+
+.index-store {
+    width: 335px;
+    height: 300px;
+    border-radius: 20px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.index-store-img {
+    width: 315px;
+    height: 180px; /* ใช้ค่าที่ต้องการ */
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.index-store-content {
+    color: darkslategray;
+    padding: 15px;
+}
+
+.product-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.modal-product-detail {
+    padding: 1rem;
+    color: darkslategray;
+}
+
+.modal-content-product {
+    overflow: hidden;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: end;
+    padding: 10px;
+}
+
+.product-quatity {
+    display: flex;
+    align-items: center;
+}
+
+.pro-quatity {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 0.25px solid darkslategray;
+    font-weight: 600;
+    justify-content: center;
+    color: darkslategray;
+    background: rgba(47, 79, 79, 0.432);
+    display: flex;
+    margin: 0rem 0.5rem;
+    transition: all 0.2s;
+}
+
+.pro-num {
+    border: none;
+    background: transparent;
+    outline: transparent;
+    font-size: 1.2em;
+    font-weight: 600;
+    width: 43px;
+    padding: 0rem 1rem;
+}
+
+.getcart {
+    padding: 0.2rem 2.3rem;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    background: darkslategray;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.getcart:active {
+    transform: translateY(1.5px);
+    background: rgba(47, 79, 79, 0.493);
+}
+
+
+
+@media (max-width:995px) {
+    .responsive{
+        display: none;
+    }
+}
+@media (min-width:995px) {
+    .offcanvas-btn{
+        display: none;
+    }
+}
+@media (max-width:995px) {
+    .kptimg{
+        display: none;
+    }
+}
+@media (max-width:995px) {
+    .responsive-store{
+        width: 200px;
+        height: 400px;
+    }
+}
+@media (max-width: 1200px) {
+    .index-store {
+      width: 50%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .index-store {
+        width: 40%;
+     
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .index-store {
+        width: 30%;
+      
+    }
+  }
+
+  @media (max-width:995px) {
+    .shop-categories {
+        display: none;
+    }
+  }
+  

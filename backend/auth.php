@@ -16,7 +16,7 @@ if(isset($_POST['regis'])){
             $rs = $sql->fetch();
             header("location: ../index.php");
         }else{
-            alert("../register.php", "รหัสผิดพลาด","danger");
+            alert("../register.php","รหัสผิดพลาด","danger");
         } 
     }
 }

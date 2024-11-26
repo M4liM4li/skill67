@@ -4,5 +4,3 @@ function viewItem(name, price, disc, img, id) {
     document.getElementById("prodImg").src = img
     document.getElementById("prodId").value = id
 }
-
-

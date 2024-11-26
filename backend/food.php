@@ -17,4 +17,20 @@ if(isset($_POST['add'])){
         header("Location: ../frontend/manage.php?page=food");
     }
 }
+
+if(isset($_POST['foodcate'])){
+    $id = $_POST['id'];
+    $catename = $_POST['catename'];
+    $sql = $conn->query("INSERT INTO food_cate(cate_name,cate_rid)VALUE('$catename','$id')");
+    $rs = $sql->fetch();
+    header("Location: ../frontend/manage.php?page=type");
+}
+if(isset($_POST['delfoodcate'])){
+    $id = $_POST['id'];
+    $sql = $conn->query("DELETE FROM food_cate where cate_id = '$id'");
+    $rs = $sql->fetch();
+    header("Location: ../frontend/manage.php?page=type");
+}
+
+
 ?>
